@@ -5,30 +5,25 @@ import Book from "./components/Books";
 class App extends Component {
   state = {
     books: [
-      { name: "Computer Programming", author: "Tamim Shahriar Subeen" },
+      { id: 1, name: "Computer Programming", author: "Tamim Shahriar Subeen" },
       {
+        id: 2,
         name: "Python Diye Programming Shekha",
         author: "Tamim Shahriar Subeen",
       },
-      { name: "Habluder Jonno Programming", author: "Jhankar Mahbub" },
+      { id: 3, name: "Habluder Jonno Programming", author: "Jhankar Mahbub" },
     ],
     otherProp: "I am Other Prop!",
   };
 
-  changeWithInput = (event) => {
-    this.setState({
-      books: [
-        {
-          name: event.target.value,
-          author: "Tamim Shahriar Subeen",
-        },
-        {
-          name: "Python Diye Programming Shekha 2nd Part",
-          author: "Tamim Shahriar Subeen",
-        },
-        { name: "Programming Er Bolod To Boss", author: "Jhankar Mahbub" },
-      ],
-    });
+  changeWithInput = (event, index) => {
+    const book = { ...this.state.books[index] };
+    book.name = event.target.value;
+
+    const books = [...this.state.books];
+    books[index] = book;
+
+    this.setState({ books: books });
   };
 
   deleteBook = (index) => {
@@ -50,8 +45,9 @@ class App extends Component {
     const books = bookState.map((book, index) => {
       return (
         <Book
-          key={book.name}
+          key={book.id}
           delete={() => this.deleteBook(index)}
+          inputName={(event) => this.changeWithInput(event, index)}
           name={book.name}
           author={book.author}
         />
