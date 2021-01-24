@@ -49,6 +49,11 @@ class App extends Component {
 
   render() {
     // console.log(this.state);
+    const bookState = this.state.books;
+
+    const books = bookState.map((book) => {
+      return <Book name={book.name} author={book.author} />;
+    });
     const style = {
       border: "1px solid red",
       borderRadius: "5px",
@@ -65,20 +70,8 @@ class App extends Component {
         >
           Change Book
         </button>
-        <Book
-          inputName={this.changeWithInput}
-          name={this.state.books[0].name}
-          author={this.state.books[0].author}
-        />
-        <Book
-          name={this.state.books[1].name}
-          author={this.state.books[1].author}
-        />
-        <Book
-          change={() => this.changeBookState("Computer Programming 3rd Part")}
-          name={this.state.books[2].name}
-          author={this.state.books[2].author}
-        />
+
+        {books}
       </div>
     );
   }
