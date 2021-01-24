@@ -2,10 +2,6 @@ import { Component } from "react";
 import "./Book.css";
 
 class Book extends Component {
-  // eslint-disable-next-line no-useless-constructor
-  constructor(props) {
-    super(props);
-  }
   render() {
     // console.log(this.props);
     return (
