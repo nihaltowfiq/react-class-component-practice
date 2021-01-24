@@ -15,22 +15,6 @@ class App extends Component {
     otherProp: "I am Other Prop!",
   };
 
-  changeBookState = (bookName) => {
-    this.setState({
-      books: [
-        {
-          name: bookName,
-          author: "Tamim Shahriar Subeen",
-        },
-        {
-          name: "Python Diye Programming Shekha 2nd Part",
-          author: "Tamim Shahriar Subeen",
-        },
-        { name: "Programming Er Bolod To Boss", author: "Jhankar Mahbub" },
-      ],
-    });
-  };
-
   changeWithInput = (event) => {
     this.setState({
       books: [
@@ -47,12 +31,31 @@ class App extends Component {
     });
   };
 
+  deleteBook = (index) => {
+    // const books = this.state.books.slice();
+    // const books = this.state.books.map((item) => item);
+    const books = [...this.state.books];
+
+    books.splice(index, 1);
+    this.setState({
+      books: books,
+    });
+    console.log("clicked");
+  };
+
   render() {
     // console.log(this.state);
     const bookState = this.state.books;
 
-    const books = bookState.map((book) => {
-      return <Book name={book.name} author={book.author} />;
+    const books = bookState.map((book, index) => {
+      return (
+        <Book
+          key={book.name}
+          delete={() => this.deleteBook(index)}
+          name={book.name}
+          author={book.author}
+        />
+      );
     });
     const style = {
       border: "1px solid red",
@@ -64,12 +67,6 @@ class App extends Component {
     return (
       <div className="app">
         <h1 style={style}>Book List</h1>
-        <input onChange={this.changeWithInput} type="text" />
-        <button
-          onClick={() => this.changeBookState("Computer Programming 2nd Part")}
-        >
-          Change Book
-        </button>
 
         {books}
       </div>

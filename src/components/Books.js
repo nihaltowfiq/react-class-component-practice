@@ -10,7 +10,7 @@ class Book extends Component {
     // console.log(this.props);
     return (
       <div className="book">
-        <h3 onClick={this.props.change}>Book: {this.props.name}</h3>
+        <h3 onClick={this.props.delete}>Book: {this.props.name}</h3>
         <input
           onChange={this.props.inputName}
           type="text"
