@@ -48,13 +48,17 @@ class App extends Component {
   };
 
   render() {
-    // let obj = new Component();
-    // console.log(obj);
-
-    console.log(this.state);
+    // console.log(this.state);
+    const style = {
+      border: "1px solid red",
+      borderRadius: "5px",
+      backgroundColor: "black",
+      color: "white",
+      padding: "5px",
+    };
     return (
-      <div className="App">
-        <h1>Book List</h1>
+      <div className="app">
+        <h1 style={style}>Book List</h1>
         <input onChange={this.changeWithInput} type="text" />
         <button
           onClick={() => this.changeBookState("Computer Programming 2nd Part")}

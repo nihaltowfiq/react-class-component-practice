@@ -1,4 +1,5 @@
 import { Component } from "react";
+import "./Book.css";
 
 class Book extends Component {
   // eslint-disable-next-line no-useless-constructor
@@ -8,7 +9,7 @@ class Book extends Component {
   render() {
     // console.log(this.props);
     return (
-      <div>
+      <div className="book">
         <h3 onClick={this.props.change}>Book: {this.props.name}</h3>
         <input
           onChange={this.props.inputName}
