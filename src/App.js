@@ -13,7 +13,7 @@ class App extends Component {
       },
       { id: 3, name: "Habluder Jonno Programming", author: "Jhankar Mahbub" },
     ],
-    otherProp: "I am Other Prop!",
+    showBooks: true,
   };
 
   changeWithInput = (event, index) => {
@@ -35,7 +35,10 @@ class App extends Component {
     this.setState({
       books: books,
     });
-    console.log("clicked");
+  };
+
+  toggleBooks = () => {
+    this.setState({ showBooks: !this.state.showBooks });
   };
 
   render() {
@@ -64,7 +67,10 @@ class App extends Component {
       <div className="app">
         <h1 style={style}>Book List</h1>
 
-        {books}
+        <button onClick={this.toggleBooks}>Toggle Books</button>
+
+        {/* {this.state.showBooks ? books : null} */}
+        {this.state.showBooks && books}
       </div>
     );
   }

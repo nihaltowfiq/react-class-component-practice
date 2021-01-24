@@ -3,5 +3,7 @@
 }
 
 .app > button {
-  margin-left: 5px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 16px;
 }
