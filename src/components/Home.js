@@ -1,11 +1,12 @@
 import { Component } from "react";
+import { NavLink, Route } from "react-router-dom";
 import booksData from "../assets/booksData";
 import BookList from "./BookList";
+import NewBook from "./NewBook";
 
 class Home extends Component {
   state = {
     books: booksData,
-    showBooks: true,
   };
 
   changeWithInput = (event, index) => {
@@ -29,14 +30,7 @@ class Home extends Component {
     });
   };
 
-  toggleBooks = () => {
-    this.setState({ showBooks: !this.state.showBooks });
-  };
-
   render() {
-    // console.log(this.state);
-    // const bookState = this.state.books;
-
     const books = (
       <BookList
         booksState={this.state.books}
@@ -45,21 +39,26 @@ class Home extends Component {
       />
     );
 
-    const style = {
-      border: "1px solid red",
-      borderRadius: "5px",
-      backgroundColor: "black",
-      color: "white",
-      padding: "5px",
-    };
     return (
       <div className="app">
-        <h1 style={style}>Book List</h1>
-
-        <button onClick={this.toggleBooks}>Toggle Books</button>
+        <nav>
+          <ul>
+            <li>
+              <NavLink to="/" exact>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/addNewBook">Add New Book</NavLink>
+            </li>
+          </ul>
+        </nav>
 
         {/* {this.state.showBooks ? books : null} */}
-        {this.state.showBooks && books}
+        {/* {books} */}
+
+        <Route path="/" exact render={() => books} />
+        <Route path="/addNewBook" component={NewBook} />
       </div>
     );
   }
