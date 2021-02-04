@@ -1,20 +1,26 @@
 import { Component } from "react";
+import { Link } from "react-router-dom";
 import "./Book.css";
 
 class Book extends Component {
   render() {
-    // console.log(this.props);
+    const { id, name, inputName, author, selectedBookHandler } = this.props;
     return (
       <div className="book">
-        <h3 onClick={this.props.delete}>Book: {this.props.name}</h3>
-        <input
-          onChange={this.props.inputName}
-          type="text"
-          value={this.props.name}
-        />
+        <h3>Book: {name}</h3>
+        <input onChange={inputName} type="text" value={name} />
         <span>
-          <i> by</i> {this.props.author}
+          <i> by</i> {author}
         </span>
+        <hr />
+        <button onClick={this.props.delete}>Delete</button>
+        <span> </span>
+        <Link
+          to={`/book/${id}`}
+          style={{ textDecoration: "none", color: "black" }}
+        >
+          <button onClick={() => selectedBookHandler(id)}>Details</button>
+        </Link>
       </div>
     );
   }

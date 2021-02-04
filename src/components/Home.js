@@ -1,12 +1,14 @@
 import { Component } from "react";
-import { NavLink, Route } from "react-router-dom";
+import { NavLink, Redirect, Route, Switch } from "react-router-dom";
 import booksData from "../assets/booksData";
+import BookDetail from "./BookDetail";
 import BookList from "./BookList";
 import NewBook from "./NewBook";
 
 class Home extends Component {
   state = {
     books: booksData,
+    selectedBook: null,
   };
 
   changeWithInput = (event, index) => {
@@ -30,12 +32,20 @@ class Home extends Component {
     });
   };
 
+  selectedBookHandler = (bookId) => {
+    const book = this.state.books.filter((book) => book.id === bookId)[0];
+    this.setState({
+      selectedBook: book,
+    });
+  };
+
   render() {
     const books = (
       <BookList
         booksState={this.state.books}
         changeWithInput={this.changeWithInput}
         deleteBook={this.deleteBook}
+        selectedBookHandler={this.selectedBookHandler}
       />
     );
 
@@ -54,11 +64,15 @@ class Home extends Component {
           </ul>
         </nav>
 
-        {/* {this.state.showBooks ? books : null} */}
-        {/* {books} */}
-
-        <Route path="/" exact render={() => books} />
-        <Route path="/addNewBook" component={NewBook} />
+        <Switch>
+          <Route path="/books" exact render={() => books} />
+          <Route path="/addNewBook" component={NewBook} />
+          <Route
+            path="/book/:id"
+            render={() => <BookDetail book={this.state.selectedBook} />}
+          />
+          <Redirect from="/" to="/books" />
+        </Switch>
       </div>
     );
   }

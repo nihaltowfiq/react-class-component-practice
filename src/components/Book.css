@@ -5,3 +5,8 @@
   border: 1px solid;
   border-radius: 5px;
 }
+
+.book:hover {
+  cursor: pointer;
+  color: brown;
+}
