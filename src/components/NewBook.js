@@ -12,6 +12,10 @@ class NewBook extends Component {
       this.description.current.value
     );
     e.preventDefault();
+    //after submitting input field will be empty
+    this.name.current.value = "";
+    this.author.current.value = "";
+    this.description.current.value = "";
   };
 
   render() {

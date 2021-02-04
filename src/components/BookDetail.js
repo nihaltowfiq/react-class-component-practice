@@ -2,7 +2,6 @@ import React, { Component } from "react";
 
 class BookDetail extends Component {
   render() {
-    // console.log(this.props);
     if (this.props.book === null) {
       return <div></div>;
     }
