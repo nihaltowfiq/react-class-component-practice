@@ -1,25 +1,17 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 
 class NewBook extends Component {
-  state = {
-    name: "",
-    author: "",
-    description: "",
-  };
-
-  handleInputChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    this.setState({
-      [name]: value,
-    });
-  };
+  name = createRef();
+  author = createRef();
+  description = createRef();
 
   handleSubmit = (e) => {
-    console.log(this.state);
+    console.log(
+      this.name.current.value,
+      this.author.current.value,
+      this.description.current.value
+    );
     e.preventDefault();
-    e.target = "";
   };
 
   render() {
@@ -33,30 +25,15 @@ class NewBook extends Component {
         >
           <label>Book Name</label>
           <br />
-          <input
-            onChange={(e) => this.handleInputChange(e)}
-            type="text"
-            name="name"
-            defaultValue={this.state.name}
-          />
+          <input type="text" name="name" ref={this.name} />
           <br />
           <label>Author Name</label>
           <br />
-          <input
-            onChange={(e) => this.handleInputChange(e)}
-            type="text"
-            name="author"
-            value={this.state.author}
-          />
+          <input type="text" name="author" ref={this.author} />
           <br />
           <label>Description</label>
           <br />
-          <input
-            onChange={(e) => this.handleInputChange(e)}
-            type="text"
-            name="description"
-            value={this.state.description}
-          />
+          <input type="text" name="description" ref={this.description} />
           <br />
           <input type="submit" value="Submit" />
         </form>
